@@ -1,5 +1,6 @@
 const range = document.querySelectorAll('input[type="range"]');
 const rangeValue = document.querySelectorAll('input[type="text"]');
+const userSize = document.querySelectorAll('input[type="number"]');
 const square = document.querySelector('.square');
 const out = document.querySelector('.out');
 let lt = 0,
@@ -30,6 +31,17 @@ range.forEach(item => {
             lb = val;
         }
         out.innerHTML = `border-radius: ${lt}px ${rt}px ${rb}px ${lb}px;`
+    })
+})
+userSize.forEach(item => { // перебираем 'input[type="number"]' В item попадает по очереди наши 'input[type="number"]'
+    item.addEventListener('input', function (e) { // "слушаем" в какой 'input[type="number"]' пользователь вводит данные
+        let valUser = e.target.value // Получаем значение пользователя
+        if (item.classList.contains('userSizeWidth')) {
+            square.style.width = `${valUser}px` //Если выбран input, который отвечает за ширину, тогда добавляем ему свойство width с заданным пользователем значением
+        } else if (item.classList.contains('userSizeHeight')) {
+            square.style.height = `${valUser}px`
+            console.log(valUser)
+        }
     })
 })
 
